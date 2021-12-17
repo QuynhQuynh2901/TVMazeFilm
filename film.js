@@ -33,7 +33,7 @@ function loadData() {
       movies.push(data)
       console.log("dataqqq: ", data)
       console.log("mang: ", movies)
-      ordenar();
+      filter();
     },
     error: function () {
       alert("error loading data");
@@ -49,7 +49,7 @@ $(document).ready(async function(){
         movies.push(data[i])
       }
      
-      ordenar();
+      filter();
       // if(movies.length > 10)
       
  })
@@ -63,10 +63,10 @@ $(document).ready(async function(){
 
 
 // console.log("datas: ", movies[0])
-// ordenar(); 
+// filter(); 
 // console.log("data: ",movies)
 // console.log("tong: ", movies.length)
-function ordenar() {
+function filter() {
   let ordem = document.getElementById("sortFilms").value;
 
   if (ordem == "premiered") { arraySort(movies, "premiered"); }
@@ -128,7 +128,7 @@ function printFilm(index) {
       totalStar = hasShow.rating.average == null ? "waiting for more votes" : ("<div class='rating'>" +  totalStar + "</div>")
       div.innerHTML +=
    `
-      <a  onclick="printTrailer(${hasShow.id})" data-linkpagina="${hasShow.officialSite}"> 
+      <a  onclick="printInfor(${hasShow.id})" data-linkpagina="${hasShow.officialSite}"> 
         <div class="container-movies">
           <h2 class="center">${hasShow.name}<br>${filter}: ${parseInt(ordem == "premiered" ? new Date(hasShow.premiered).getFullYear() : new Date(hasShow.ended).getFullYear())}<br>
             ${totalStar}
@@ -150,7 +150,8 @@ function testDay(a){
 }
 
 
-function printTrailer(id) {
+function printInfor(id) {
+
   let movie = movies.filter(a => a.id == id)[0]
   let tagBody = document.querySelector("body");
   let tagDivGeral = document.createElement("div");
@@ -164,13 +165,13 @@ function printTrailer(id) {
   tagDivGeral.appendChild(tagDivInfor);
   tagBody.appendChild(tagDivGeral);
 
-  tagDivGeral.classList.add("modal-video-geral");
+  tagDivGeral.classList.add("modal-infor-geral");
   tagDivGeral.classList.add("center");
-  tagDivGeral.addEventListener("click", closeTrailer);
+  tagDivGeral.addEventListener("click", closeInfor);
 
-  tagDivInfor.classList.add("modal-video-trailer");
+  tagDivInfor.classList.add("modal-infor-trailer");
 
-  tagDivInforDetail.classList.add("modal-video-iframe");
+  tagDivInforDetail.classList.add("modal-infor-iframe");
   
   tagDivInforDetail.appendChild(tagImage)
   tagImage.src = movie.image.medium
@@ -240,8 +241,8 @@ function getItemByIndex(index = 0){
 
 
 //đóng infor
-function closeTrailer() {
-  document.querySelector(".modal-video-geral").remove();
+function closeInfor() {
+  document.querySelector(".modal-infor-geral").remove();
 }
 // //xem thêm thông tin phim
 function goTo(e) {
