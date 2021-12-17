@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"/>
+    <title>TVMaze</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="forward center">
+      <h6>
+        Traing Jquery at Boolfly - 
+        <a href="https://www.facebook.com/nhuquynh.pham.1042" target="_blank">Nhu Quynh</a>
+        <a href="https://github.com/QuynhQuynh2901" target="_blank">github.io</a> 
+      </h6>
+    </div>
+    <div class="containers">
+      <h1 class="page-title">QuynhQuynhflix - TVMaze</h1>
+      <div class="container-opcoes">
+        <label for="sortFilmes">Sort by:</label>
+        <select id="sortFilms" onchange="ordenar()">
+          <option value="name" class="ordemNome">Name</option>
+          <option value="premiered" class="ordemLancamento">manufacture</option>
+          <option value="ended" class="ordemCronologica">year</option>
+        </select>
+      <!--   <button class="mostra-container-cadastro" >Add</button> -->
+      </div>
+      <div class="search">
+        <input placeholder="nhập từ khóa muốn tìm kiếm" class="input-search" id="searchs" ><i class="fas fa-search-plus" onclick="loadData()"></i>
+      </div>
+ 
+<!-- <div class="container-register center">
+        <fieldset>
+          <legend>Register</legend>
+          <div class="container-register-field">
+            <label for="nameOfFilm">Name of film</label>
+            <input id="nameFilm" type="text">
+          </div>
+          <div class="container-register-field">
+            <label for="releaseYear">Release year</label>
+            <input id="anoLancamentoFilme" type="number" step="1">
+          </div>
+          <div class="container-register-field">
+            <label for="officialSite">Official site</label>
+            <input id="officialSite" type="text">
+          </div>
+          <div class="container-register-field">
+            <label for="linkImage">Link image</label>
+            <input id="linkImage" type="text">
+          </div>
+    <!--       <div class="container-register-field">
+            <label for="sumary">Sumary</label>
+            <input id="sumary" type="text">
+          </div> -->
+     
+<!--    
+        </fieldset>
+      </div> --> 
+
+
+
+      <div class="container-total">
+      </div>
+     <!--  <ul class="pagination justify-content-center" style="margin:20px 0">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul> -->
+
+
+
+  </body>
+  <a href="https://www.facebook.com/nhuquynh.pham.1042" target="_blank">
+    <footer>Created by Nhu Quynh</footer>
+  </a>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="film.js"></script>
+ <!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+</html>
+
+
+
+
