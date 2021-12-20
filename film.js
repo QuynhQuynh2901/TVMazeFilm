@@ -69,11 +69,11 @@ $(document).ready(async function(){
 
 
 function filter() {
-  let ordem = document.getElementById("sortFilms").value;
+  let choice = document.getElementById("sortFilms").value;
 
-  if (ordem == "premiered") { arraySort(movies, "premiered"); }
+  if (choice == "premiered") { arraySort(movies, "premiered"); }
 
-  arraySort(movies, ordem);
+  arraySort(movies, choice);
 
 
   printFilm();
