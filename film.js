@@ -8,10 +8,16 @@ function search(){
   let strSearch = document.getElementById("searchs").value
   if (strSearch != "") {
     if (isNaN(strSearch)) {
+      document.querySelector(".pagination").style.display = "none"
       return "https://api.tvmaze.com/search/shows?q=" + strSearch
+
     }
-    else
-      return "https://api.tvmaze.com/shows/" + strSearch
+    else{
+      document.querySelector(".pagination").style.display = "none"
+       return "https://api.tvmaze.com/shows/" + strSearch
+    }
+
+     
   }
   else
     return "https://api.tvmaze.com/shows";
@@ -26,14 +32,15 @@ function loadData() {
      movies = [];
      if(Array.isArray(data)){
       for(let i = 0; i < data.length; i++){
-        movies.push(data[i])
+        movies.push(data[i].show??data[i])
       }
+      console.log("mang: ", movies)
      }
      else
       movies.push(data)
       console.log("dataqqq: ", data)
       console.log("mang: ", movies)
-      filter();
+    filter();
     },
     error: function () {
       alert("error loading data");
@@ -57,15 +64,10 @@ $(document).ready(async function(){
  // {
 
  // }
- showPagin();
+  showPagin();
 })
 
 
-
-// console.log("datas: ", movies[0])
-// filter(); 
-// console.log("data: ",movies)
-// console.log("tong: ", movies.length)
 function filter() {
   let ordem = document.getElementById("sortFilms").value;
 
@@ -94,6 +96,7 @@ function printFilm(index) {
   var div = document.querySelector('.container-total') 
   div.innerHTML = "" 
   let object = getItemByIndex(index);
+  console.log("object: ", object)
    // let next = document.querySelector(".next a")
    //  let prev = document.querySelector(".prev a")
    // if(next && prev){
@@ -103,14 +106,12 @@ function printFilm(index) {
    // }
 
   for (let movie of object) { 
-    let hasShow = movie.show ? movie.show : movie
-    // console.log("quỳnh: ",  movie)
-    // console.log("âddfgh", movie.show)
-    // console.log("hasShowId: ", hasShow.rating.average)
+    if(movie != undefined){
+    let hasShow = movie?.show ?? movie
+
     let star = "<span><i class='fas fa-star'></i></span>"
     let star_half = "<span><i class='fas fa-star-half-alt'></i></span>"
     let totalStar = ""
-
     let lenRating
     if(hasShow.rating.average != null){
       lenRating = hasShow.rating.average/ 2
@@ -136,9 +137,11 @@ function printFilm(index) {
         </div>
       </a>
     `
-
+    }
 
   }
+  
+
 }
 function testDay(a){
   let day = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -151,8 +154,10 @@ function testDay(a){
 
 
 function printInfor(id) {
-
-  let movie = movies.filter(a => a.id == id)[0]
+  console.log("id: ", id)
+  console.log("fffff", movies)
+  let movie = movies.filter(a => a.id === id)[0]
+  console.log("print phim: ", movie)
   let tagBody = document.querySelector("body");
   let tagDivGeral = document.createElement("div");
   let tagDivInfor = document.createElement("div");
@@ -193,7 +198,7 @@ function printInfor(id) {
 
 //<p class="description">${movie.show.summary}</p>
   tagButton.classList.add("btn-link")
-  tagButton.dataset.href = movie.linkPagina
+  tagButton.dataset.href = movie.officialSite
   tagButton.addEventListener("click", goTo)
   tagButton.innerHTML = "Link Offical"
   
@@ -203,7 +208,6 @@ function showPagin(){
   let items = 5;
   let totalIndex = movies.length
   let itemsInIndex = Math.ceil(totalIndex/24)
-  // console.log("tong: ", movies.length)
   let tagBody = document.querySelector("body");
   let tagUlPagin = document.createElement("ul");
   tagUlPagin.classList.add("pagination", "justify-content-center")
@@ -234,7 +238,6 @@ function getItemByIndex(index = 0){
   {
     moviesByIndex.push(movies[i])
   }
-  // console.log("số phần tử: ", moviesByIndex)
   return moviesByIndex;
 }
 
